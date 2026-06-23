@@ -1,9 +1,8 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getPostBySlug, getAllPosts, BlogSection, BlogSubsection } from '@/data/blogPosts';
+import { getPostBySlug, getAllPosts, BlogSection, BlogSubsection, CONTACT } from '@/content';
 import ScrollAnimator from '@/components/ScrollAnimator';
-import { CONTACT } from '@/constants';
 
 function formatDate(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString('es-CO', {

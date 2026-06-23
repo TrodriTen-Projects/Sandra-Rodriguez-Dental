@@ -1,68 +1,118 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { navbarLinks } from '../navbar/navbarLinks';
+'use client';
+
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
-import SectionTitle from '../SectionTitle';
-import type { SubLinkItem } from '../navbar/navbarLinks';
-const getAllTreatmentSubItems = () => {
-  const treatments = navbarLinks.find(link => link.key === 'treatments');
-  if (!treatments || !treatments.subLinks) return [];
-  // Only return subLinkItems from subLinks that have them
-  return treatments.subLinks
-    .filter(t => t.subLinkItems && t.subLinkItems.length > 0)
-    .flatMap(t => t.subLinkItems);
-};
 import Image from 'next/image';
+import SectionTitle from '../SectionTitle';
+import { navbarLinks } from '../navbar/navbarLinks';
+import type { SubLinkItem } from '../navbar/navbarLinks';
+
+function getAllTreatmentSubItems(): SubLinkItem[] {
+  const treatments = navbarLinks.find((link) => link.key === 'treatments');
+  if (!treatments || !treatments.subLinks) return [];
+  return treatments.subLinks
+    .filter((t) => t.subLinkItems && t.subLinkItems.length > 0)
+    .flatMap((t) => t.subLinkItems as SubLinkItem[])
+    .filter(Boolean);
+}
+
+// Computed once at module load (navbarLinks is static) so the cards render into
+// the static HTML immediately. The list is rendered TWICE: scrolling wraps by
+// exactly one set width, which is invisible because both copies are identical →
+// a seamless infinite loop. NOTE: the track must NOT use CSS `scroll-smooth`,
+// or the instant wrap would animate (rewind) and become visible; smoothness is
+// applied per-advance via scrollBy({ behavior: 'smooth' }) instead.
+const TREATMENT_ITEMS = getAllTreatmentSubItems();
+const SET_LENGTH = TREATMENT_ITEMS.length;
+const CAROUSEL_ITEMS = [...TREATMENT_ITEMS, ...TREATMENT_ITEMS];
+
+// Auto-advance interval (ms).
+const AUTOPLAY_MS = 1000;
+
 const TatamientosHomeHero = () => {
-  const treatmentItems = getAllTreatmentSubItems();
-  // Infinite scroll: clone first and last items
-  const [items, setItems] = useState<SubLinkItem[]>([]);
   const carouselRef = useRef<HTMLDivElement>(null);
+  const tickingRef = useRef(false);
+  const pausedRef = useRef(false);
 
-  useEffect(() => {
-    if (treatmentItems.length > 0) {
-      // Filter out undefined just in case
-      const filtered = treatmentItems.filter(Boolean) as SubLinkItem[];
-      // Duplicate the first 2 items at the end for smooth infinite scroll
-      const N = Math.min(2, filtered.length); // Number of items to duplicate
-      setItems([
-        ...filtered,
-        ...filtered.slice(0, N),
-      ]);
+  const cardStep = () => {
+    const el = carouselRef.current;
+    if (!el) return 320;
+    return el.firstChild instanceof HTMLElement ? el.firstChild.offsetWidth + 24 : 320;
+  };
+
+  // Width of one full copy of the list (measured from the DOM so it stays exact
+  // across breakpoints / card sizes).
+  const setWidth = () => {
+    const el = carouselRef.current;
+    if (!el) return cardStep() * SET_LENGTH;
+    const first = el.children[0];
+    const secondSetStart = el.children[SET_LENGTH];
+    if (first instanceof HTMLElement && secondSetStart instanceof HTMLElement) {
+      return secondSetStart.offsetLeft - first.offsetLeft;
     }
-  }, [treatmentItems.length]);
+    return cardStep() * SET_LENGTH;
+  };
 
-  // On mount, scroll to the first real item
-  useEffect(() => {
-    if (carouselRef.current && items.length > 0) {
-      carouselRef.current.scrollLeft = 0;
-    }
-  }, [items.length]);
-
-  // Handle infinite scroll effect (only forward/right)
+  // Once we scroll past one full set, subtract a set width — instant and
+  // invisible because the second copy is identical. rAF-throttled.
   const handleScroll = () => {
-    if (!carouselRef.current) return;
-    const cardWidth = carouselRef.current.firstChild instanceof HTMLElement ? carouselRef.current.firstChild.offsetWidth + 24 : 320;
-    const realItemsCount = items.length > 2 ? items.length - 2 : items.length;
-    // If scrolled past the last real item (into the duplicated ones)
-    if (carouselRef.current.scrollLeft >= cardWidth * (realItemsCount)) {
-      // Instantly reset to the start (same card visually)
-      carouselRef.current.scrollLeft = 0;
-    }
+    if (tickingRef.current) return;
+    tickingRef.current = true;
+    requestAnimationFrame(() => {
+      tickingRef.current = false;
+      const el = carouselRef.current;
+      if (!el) return;
+      const sw = setWidth();
+      if (sw > 0 && el.scrollLeft >= sw) {
+        el.scrollLeft -= sw;
+      }
+    });
   };
 
   const scrollRight = () => {
-    if (carouselRef.current) {
-      const cardWidth = carouselRef.current.firstChild instanceof HTMLElement ? carouselRef.current.firstChild.offsetWidth + 24 : 320;
-      carouselRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
-    }
+    carouselRef.current?.scrollBy({ left: cardStep(), behavior: 'smooth' });
   };
 
   const scrollLeft = () => {
-    if (carouselRef.current) {
-      const cardWidth = carouselRef.current.firstChild instanceof HTMLElement ? carouselRef.current.firstChild.offsetWidth + 24 : 320;
-      carouselRef.current.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    const el = carouselRef.current;
+    if (!el) return;
+    // Near the start, hop forward one set first so we can loop back seamlessly
+    // instead of hitting the left edge.
+    if (el.scrollLeft < cardStep()) {
+      el.scrollLeft += setWidth();
     }
+    el.scrollBy({ left: -cardStep(), behavior: 'smooth' });
   };
+
+  const pause = () => { pausedRef.current = true; };
+  const resume = () => { pausedRef.current = false; };
+
+  // Auto-play: advance one card on an interval. Skipped for visitors who prefer
+  // reduced motion; paused while hovering/touching or when the tab is hidden.
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia?.(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+    if (prefersReducedMotion) return;
+
+    const onVisibility = () => {
+      pausedRef.current = document.hidden;
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+
+    const id = window.setInterval(() => {
+      if (pausedRef.current) return;
+      const el = carouselRef.current;
+      if (!el) return;
+      const step = el.firstChild instanceof HTMLElement ? el.firstChild.offsetWidth + 24 : 320;
+      el.scrollBy({ left: step, behavior: 'smooth' });
+    }, AUTOPLAY_MS);
+
+    return () => {
+      window.clearInterval(id);
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
+  }, []);
 
   return (
     <section className="bg-white max-w-7xl mx-auto px-4">
@@ -71,11 +121,15 @@ const TatamientosHomeHero = () => {
         <div className="relative">
           <div
             ref={carouselRef}
-            className="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth p-4 md:p-4"
+            className="flex gap-6 overflow-x-auto no-scrollbar p-4 md:p-4"
             style={{ scrollSnapType: 'x mandatory' }}
             onScroll={handleScroll}
+            onMouseEnter={pause}
+            onMouseLeave={resume}
+            onTouchStart={pause}
+            onTouchEnd={resume}
           >
-            {items.map((item, idx) => (
+            {CAROUSEL_ITEMS.map((item, idx) => (
               item && (
                 <Link
                   key={item.key + '-' + idx}
@@ -88,6 +142,7 @@ const TatamientosHomeHero = () => {
                     width={350}
                     height={350}
                     alt={item.label}
+                    loading="lazy"
                     className="w-full h-full object-cover brightness-90"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10" />
@@ -125,4 +180,4 @@ const TatamientosHomeHero = () => {
   );
 };
 
-export default TatamientosHomeHero; 
+export default TatamientosHomeHero;

@@ -6,6 +6,7 @@ import Logo from "./Logo";
 import { useGoogleAdsConversion } from "@/hooks/useGoogleAdsConversion";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import MobileDropdown from "./MobileDropdown";
+import { whatsAppUrl, WHATSAPP_DEFAULT_MESSAGE } from "@/content";
 
 type MobileMenuProps = {
   isOpen: boolean;
@@ -82,7 +83,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                 return (
                   <a
                     key={link.key}
-                    href="https://wa.me/+573212786958"
+                    href={whatsAppUrl(WHATSAPP_DEFAULT_MESSAGE)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`px-8 text-center border-b border-secondaryLight block py-6 text-gray-700 hover:text-primary transition-colors duration-200 ${

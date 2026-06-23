@@ -1,6 +1,6 @@
 import React from 'react';
 import { PhoneIcon, LocationIcon, InstagramIcon, FacebookIcon } from '@/components/ui/icons';
-import { CONTACT } from '@/constants';
+import { CONTACT } from '@/content';
 
 // Define the type for our contact information
 export type ContactInfo = {

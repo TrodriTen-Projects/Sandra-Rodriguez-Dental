@@ -231,7 +231,7 @@ Private project for Dra. Sandra Liliana Rodriguez Ariza.
 
 ## 👨‍💻 Development Team
 
-- **Original Developer:** [zShuck](https://shuck-portfolio.vercel.app/)
+- **Original Developer:** [TrodriTen](https://trodriten.com/)
 - **Current Maintainer:** Dra. Sandra Rodriguez Dental Team
 
 ## 🔗 Links

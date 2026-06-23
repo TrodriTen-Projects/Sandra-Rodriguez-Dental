@@ -1,26 +1,26 @@
 import Script from 'next/script';
+import { CONTACT, BRAND } from '@/content';
 
 export default function StructuredData() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Dentist",
-    "name": "Dra. Sandra Liliana Rodriguez Ariza",
-    "image": "https://www.sandrarodriguezdental.com/sandra.webp",
-    "url": "https://www.sandrarodriguezdental.com",
-    "telephone": "+57-XXX-XXXXXXX", // Replace with actual phone number
+    "name": BRAND.FULL_NAME,
+    "image": `${BRAND.SITE_URL}/sandra.webp`,
+    "url": BRAND.SITE_URL,
+    "telephone": CONTACT.PHONE,
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "", // Add actual street address
+      "streetAddress": "Cra. 15 #88 - 64 607",
       "addressLocality": "Bogotá",
       "addressRegion": "Cundinamarca",
-      "postalCode": "", // Add postal code
       "addressCountry": "CO"
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 4.60971, // Replace with actual coordinates
-      "longitude": -74.08175
+      "latitude": 4.674045,
+      "longitude": -74.055275
     },
     "openingHoursSpecification": [
       {
@@ -30,22 +30,19 @@ export default function StructuredData() {
         "closes": "18:00"
       }
     ],
-    "sameAs": [
-      "https://www.facebook.com/sandrarodriguezdental", // Add actual social media URLs
-      "https://www.instagram.com/sandrarodriguezdental"
-    ]
+    "sameAs": [CONTACT.FACEBOOK_URL, CONTACT.INSTAGRAM_URL]
   };
 
   const organizationData = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Sandra Liliana Rodriguez Dental",
-    "url": "https://www.sandrarodriguezdental.com",
-    "logo": "https://www.sandrarodriguezdental.com/logo.svg",
-    "description": "Servicios especializados de rehabilitación dental y odontología estética por la Dra. Sandra Liliana Rodriguez Ariza.",
+    "name": BRAND.SITE_NAME,
+    "url": BRAND.SITE_URL,
+    "logo": `${BRAND.SITE_URL}/logo.svg`,
+    "description": BRAND.DESCRIPTION,
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+57-XXX-XXXXXXX", // Replace with actual phone number
+      "telephone": CONTACT.PHONE,
       "contactType": "customer service",
       "availableLanguage": ["Spanish"]
     }

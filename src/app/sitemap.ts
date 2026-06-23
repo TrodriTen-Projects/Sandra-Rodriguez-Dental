@@ -1,6 +1,10 @@
 import type { MetadataRoute } from 'next'
-import { blogPosts } from '@/data/blogPosts'
- 
+import { blogPosts } from '@/content'
+
+// Evaluated at build time so the sitemap is emitted as a static file (required
+// by `output: 'export'`).
+export const dynamic = 'force-static'
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const blogUrls: MetadataRoute.Sitemap = blogPosts.map((post) => ({
     url: `https://www.sandrarodriguezdental.com/blog/${post.slug}`,

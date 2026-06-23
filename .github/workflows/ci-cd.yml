@@ -1,0 +1,102 @@
+name: CI / CD
+
+# ──────────────────────────────────────────────────────────────────────────
+# Required GitHub configuration (Settings → Secrets and variables → Actions):
+#
+#   Secrets (sensitive):
+#     CLOUDFLARE_API_TOKEN     Token with the "Cloudflare Pages — Edit" permission
+#     CLOUDFLARE_ACCOUNT_ID    Your Cloudflare account id
+#
+#   Variables (NOT secrets — these public tracking IDs are inlined at build time):
+#     NEXT_PUBLIC_GA_ID
+#     NEXT_PUBLIC_GTM_ID
+#     NEXT_PUBLIC_FB_PIXEL_ID
+#     NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID
+#     NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL
+#
+# Also create a Cloudflare Pages project named "sandrarodriguezdental"
+# (or change --project-name below) with its production branch set to "main".
+# ──────────────────────────────────────────────────────────────────────────
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Verify (lint · types · audit · build)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type-check
+        run: npx tsc --noEmit
+
+      - name: Security audit (fail on high/critical)
+        run: npm audit --audit-level=high
+
+      - name: Build static export
+        env:
+          NEXT_PUBLIC_GA_ID: ${{ vars.NEXT_PUBLIC_GA_ID }}
+          NEXT_PUBLIC_GTM_ID: ${{ vars.NEXT_PUBLIC_GTM_ID }}
+          NEXT_PUBLIC_FB_PIXEL_ID: ${{ vars.NEXT_PUBLIC_FB_PIXEL_ID }}
+          NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID: ${{ vars.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID }}
+          NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL: ${{ vars.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL }}
+        run: npm run build
+
+      - name: Upload static export
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: static-export
+          path: out/
+          retention-days: 7
+
+  dependency-review:
+    name: Dependency review
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: high
+
+  deploy:
+    name: Deploy to Cloudflare Pages
+    needs: verify
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download static export
+        uses: actions/download-artifact@v4
+        with:
+          name: static-export
+          path: out
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy out --project-name=sandrarodriguezdental --branch=main

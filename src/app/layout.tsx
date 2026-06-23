@@ -3,9 +3,7 @@ import { DM_Sans } from "next/font/google";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import "./globals.css";
-import GoogleAnalytics from '@/components/GoogleAnalytics';
-import GoogleTagManager from '@/components/GoogleTagManager';
-import FacebookPixel from '@/components/FacebookPixel';
+import Analytics from '@/components/analytics/Analytics';
 import StructuredData from '@/components/StructuredData';
 import { WhatsAppButton } from "@/components/buttons/WhatsappButton";
 import logoImage from "../../public/logo.svg";
@@ -121,14 +119,11 @@ export default function RootLayout({
             height={50}
             priority
             fetchPriority="high"
-            quality={20}
             style={{ objectFit: "contain" }}
           />
           </Link>
         </div>
-        <GoogleAnalytics />
-        <GoogleTagManager />
-        <FacebookPixel />
+        <Analytics />
         <StructuredData />
         <Navbar/>
         {children}

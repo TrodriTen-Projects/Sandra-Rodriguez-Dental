@@ -1,88 +1,63 @@
-"use client";
-import Cookies from "js-cookie";
-import { MouseEvent, useEffect, useState } from "react";
+'use client';
+
+import { MouseEvent } from 'react';
+import Cookies from 'js-cookie';
+import { COOKIES } from '@/constants';
 import SectionTitle from '../SectionTitle';
 
-const USER_CONSENT_COOKIE_KEY = "cookie_consent_is_true";
-const USER_CONSENT_COOKIE_EXPIRE_DATE = 365;
+const CONSENT_EXPIRES_DAYS = 365;
 
-const CookieConsent = () => {
-  const [cookieConsentIsTrue, setCookieConsentIsTrue] = useState(true);
+interface CookieConsentProps {
+  /** Called after the visitor accepts analytics cookies. */
+  onAccept: () => void;
+  /** Called after the visitor rejects analytics cookies. */
+  onReject: () => void;
+}
 
-  useEffect(() => {
-    const consentIsTrue = Cookies.get(USER_CONSENT_COOKIE_KEY) === "true";
-    setCookieConsentIsTrue(consentIsTrue);
-  }, []);
-
-  const onClick = (e: MouseEvent<HTMLButtonElement>, accept: boolean) => {
+/**
+ * Cookie consent banner. Persists the choice for a year and notifies the parent
+ * so it can (de)activate analytics. No third-party cookies are written here —
+ * the parent only loads the tracking scripts once consent is granted.
+ */
+const CookieConsent = ({ onAccept, onReject }: CookieConsentProps) => {
+  const choose = (e: MouseEvent<HTMLButtonElement>, accept: boolean) => {
     e.preventDefault();
-
-    if (accept) {
-      Cookies.set(USER_CONSENT_COOKIE_KEY, "true", {
-        expires: USER_CONSENT_COOKIE_EXPIRE_DATE,
-      });
-      setCookieConsentIsTrue(true);
-      setGoogleMapsCookies();
-    } else {
-      Cookies.remove(USER_CONSENT_COOKIE_KEY);
-      setCookieConsentIsTrue(false);
-    }
-  };
-
-  const setGoogleMapsCookies = () => {
-    const googleCookies = [
-      "COMPASS", "AID", "LSOLH", "__Secure-OSID", "__Host-3PLSID",
-      "__Secure-3PAPISID", "__Secure-3PSID", "NID", "__Secure-3PSIDTS", "__Secure-3PSIDCC"
-    ];
-    
-    googleCookies.forEach(cookieName => {
-      Cookies.set(cookieName, "placeholder_value", { 
-        expires: USER_CONSENT_COOKIE_EXPIRE_DATE,
-        domain: ".google.com",
-        secure: true,
-        sameSite: "none"
-      });
+    Cookies.set(COOKIES.CONSENT, accept ? 'true' : 'false', {
+      expires: CONSENT_EXPIRES_DAYS,
+      sameSite: 'Lax',
+      secure: true,
     });
+    if (accept) onAccept();
+    else onReject();
   };
-
-  if (cookieConsentIsTrue) {
-    return null;
-  }
 
   return (
-    <div className="fixed bottom-0 left-0 p-4 bg-white border-t border-primary w-full z-50">
-      <div className="flex justify-between items-start">
+    <div className="fixed bottom-0 left-0 z-50 w-full border-t border-primary bg-white p-4 shadow-lg">
+      <div className="mx-auto flex max-w-5xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
-          <SectionTitle header="h2" className="mb-2 text-xl font-heading">
-            Cookie Policy
+          <SectionTitle header="h2" className="mb-1 text-lg font-bold">
+            Uso de cookies
           </SectionTitle>
-          <p className="mb-4 leading-relaxed text-black">
-            Our site uses cookies, which helps us to improve our site and enables us
-            to deliver the best possible service and customer experience. By
-            clicking Accept, you are agreeing to our cookie policy.{" "}
-            <a className="font-semibold text-blue-700 hover:underline" href="#">
-              Cookie Policy
-            </a>
-            .
+          <p className="text-sm leading-relaxed text-black">
+            Utilizamos cookies de análisis (Google Analytics y Meta) para entender
+            cómo se usa el sitio y mejorar tu experiencia. Solo se activan si las
+            aceptas; puedes rechazarlas y seguir navegando con normalidad.
           </p>
         </div>
-        <button
-          className="text-gray-500 hover:text-gray-700"
-          onClick={(e) => onClick(e, false)}
-          aria-label="Close cookie consent"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-      <div className="flex gap-8">
-        <button
-          className="rounded inline-flex items-center px-6 py-3 leading-none text-white bg-primaryDark hover:bg-primary"
-          onClick={(e) => onClick(e, true)}
-        >
-          Accept
-        </button>
+        <div className="flex shrink-0 gap-3">
+          <button
+            onClick={(e) => choose(e, false)}
+            className="rounded border border-primary px-5 py-2.5 text-sm font-medium text-primary transition-colors hover:bg-secondaryLight"
+          >
+            Rechazar
+          </button>
+          <button
+            onClick={(e) => choose(e, true)}
+            className="rounded bg-primaryDark px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary"
+          >
+            Aceptar
+          </button>
+        </div>
       </div>
     </div>
   );

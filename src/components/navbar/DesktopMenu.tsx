@@ -3,6 +3,7 @@ import { navbarLinks } from "./navbarLinks";
 import { useGoogleAdsConversion } from "@/hooks/useGoogleAdsConversion";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import DesktopDropdown from "./DesktopDropdown";
+import { whatsAppUrl, WHATSAPP_DEFAULT_MESSAGE } from "@/content";
 
 const DesktopMenu = () => {
   const { trackEvent } = useAnalytics();
@@ -16,7 +17,7 @@ const DesktopMenu = () => {
         return (
           <a
             key={link.key}
-            href="https://wa.me/+573212786958"
+            href={whatsAppUrl(WHATSAPP_DEFAULT_MESSAGE)}
             target="_blank"
             rel="noopener noreferrer"
             aria-label="whatsapp-button"

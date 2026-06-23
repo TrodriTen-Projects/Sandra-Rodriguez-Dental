@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useGoogleAdsConversion } from "@/hooks/useGoogleAdsConversion";
+import { whatsAppUrl, WHATSAPP_DEFAULT_MESSAGE } from "@/content";
 
 export const WhatsAppButton = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -9,12 +10,14 @@ export const WhatsAppButton = () => {
   const { trackEvent } = useAnalytics();
   const { reportConversion } = useGoogleAdsConversion();
 
+  const waHref = whatsAppUrl(WHATSAPP_DEFAULT_MESSAGE);
+
   // Check if we're on mobile
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768); // md breakpoint
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
@@ -42,14 +45,14 @@ export const WhatsAppButton = () => {
     reportConversion(undefined, "omnibutton");
 
     // Open WhatsApp in new tab
-    window.open("https://wa.me/+573212786958", '_blank', 'noopener,noreferrer');
+    window.open(waHref, '_blank', 'noopener,noreferrer');
   };
 
   return (
     <>
       {/* Icon-only button (desktop or mobile when not scrolled) */}
       <a
-        href="https://wa.me/+573212786958"
+        href={waHref}
         target="_blank"
         title="Contáctanos por WhatsApp"
         rel="noopener noreferrer"
@@ -77,14 +80,14 @@ export const WhatsAppButton = () => {
 
       {/* Pill button with text (only on mobile when scrolled) */}
       <a
-        href="https://wa.me/+573212786958"
+        href={waHref}
         target="_blank"
         title="Contáctanos por WhatsApp"
         rel="noopener noreferrer"
         onClick={handleWhatsAppClick}
         className={`
           fixed bg-primary text-white shadow-lg hover:bg-green-600 z-50 rounded-full
-          flex items-center justify-center 
+          flex items-center justify-center
           transition-all duration-500 ease-in-out
           ${(isMobile && isScrolled) ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}
         `}
@@ -111,4 +114,3 @@ export const WhatsAppButton = () => {
     </>
   );
 };
-  

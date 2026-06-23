@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useAnalytics } from './useAnalytics';
 import { useGoogleAdsConversion } from './useGoogleAdsConversion';
-import { CONTACT } from '@/constants';
+import { CONTACT } from '@/content';
 
 /**
  * useWhatsApp Hook

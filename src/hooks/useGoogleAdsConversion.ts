@@ -1,5 +1,7 @@
 'use client'
 
+import { TRACKING } from '@/lib/env';
+
 // Declare the global gtag function type
 declare global {
   interface Window {
@@ -23,6 +25,7 @@ export const useGoogleAdsConversion = () => {
   const reportConversion = (url?: string, buttonType?: string) => {
     // Only run on client side
     if (typeof window === 'undefined' || typeof window.gtag === 'undefined') return false;
+    if (!TRACKING.GOOGLE_ADS_CONVERSION_URL) return false;
     
     const callback = () => {
       if (typeof url !== 'undefined') {
@@ -31,7 +34,7 @@ export const useGoogleAdsConversion = () => {
     };
     
     window.gtag('event', 'conversion', {
-      'send_to': 'AW-17004693029/xEGJCJG0pMAaEKWMvKw_',
+      'send_to': TRACKING.GOOGLE_ADS_CONVERSION_URL,
       'event_callback': callback,
       'button_type': buttonType || 'unknown' // Custom parameter to identify the button
     });

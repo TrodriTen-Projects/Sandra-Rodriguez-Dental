@@ -7,6 +7,8 @@ interface WhatsAppButtonProps {
   phoneNumber?: string;
   isPrimary?: boolean;
   componentName?: string;
+  /** Optional pre-filled WhatsApp message. */
+  message?: string;
 }
 
 const WhatsAppButtonCTA: React.FC<WhatsAppButtonProps> = ({
@@ -14,6 +16,7 @@ const WhatsAppButtonCTA: React.FC<WhatsAppButtonProps> = ({
   phoneNumber = "+573212786958",
   isPrimary = false,
   componentName = "unknown",
+  message,
 }) => {
   const { trackEvent } = useAnalytics();
   const { reportConversion } = useGoogleAdsConversion();
@@ -29,8 +32,11 @@ const WhatsAppButtonCTA: React.FC<WhatsAppButtonProps> = ({
     // Report conversion without URL to avoid double navigation
     reportConversion(undefined, `cta_button_${componentName}`);
 
-    // Open WhatsApp in new tab
-    window.open(`https://wa.me/${phoneNumber}`, '_blank', 'noopener,noreferrer');
+    // Open WhatsApp in new tab, with an optional pre-filled message
+    const url = message
+      ? `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+      : `https://wa.me/${phoneNumber}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   const buttonClasses = `

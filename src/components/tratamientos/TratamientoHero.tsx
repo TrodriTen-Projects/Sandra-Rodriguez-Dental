@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import WhatsappCTA from "@/components/buttons/WhatsappButtonCTA";
 import SectionTitle from '../SectionTitle';
+import { whatsAppTreatmentMessage } from "@/content";
 
 interface TratamientoHeroProps {
   titulo: string;
@@ -45,7 +46,7 @@ export default function TratamientoHero({
           <p className="text-xl text-white mb-8">{descripcion}</p>
 
           <div className="flex flex-wrap gap-4">
-            <WhatsappCTA componentName={`tratamiento_hero_${titulo}`} text="¡Contáctanos!" phoneNumber="+573212786958" isPrimary={isPrimary} />
+            <WhatsappCTA componentName={`tratamiento_hero_${titulo}`} text="¡Contáctanos!" phoneNumber="+573212786958" isPrimary={isPrimary} message={whatsAppTreatmentMessage(titulo)} />
           </div>
         </div>
       </div>

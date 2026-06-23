@@ -1,7 +1,7 @@
 'use client'
 import Image from "next/image";
 import React from "react";
-import t from "../../translations/es/translations.json";
+import { HOME_HERO, WHATSAPP_DEFAULT_MESSAGE } from "@/content";
 import WhatsAppButtonCTA from "../buttons/WhatsappButtonCTA";
 import SectionTitle from '../SectionTitle';
 
@@ -22,15 +22,16 @@ const HomeHero = () => {
         <div className="max-w-2xl">
           <h1 className="text-sm text-white/90 mb-2">Rehabilitación Oral en Bogotá, Colombia</h1>
           <SectionTitle header="h3" className="font-bold text-white mb-4 text-5xl">
-            {t.homeHero.title}
+            {HOME_HERO.title}
           </SectionTitle>
-          <p className="text-xl text-white mb-8">{t.homeHero.subtitle}</p>
+          <p className="text-xl text-white mb-8">{HOME_HERO.subtitle}</p>
           <div className="flex flex-wrap gap-4">
             <WhatsAppButtonCTA
-              text={t.homeHero.CTA}
+              text={HOME_HERO.CTA}
               phoneNumber="+573212786958"
               isPrimary={true}
               componentName="home_hero"
+              message={WHATSAPP_DEFAULT_MESSAGE}
             />
           </div>
         </div>

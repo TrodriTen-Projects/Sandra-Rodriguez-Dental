@@ -2,9 +2,11 @@
 
 import Script from 'next/script';
 import Image from 'next/image';
-import { TRACKING } from '@/constants';
+import { TRACKING } from '@/lib/env';
 
 export default function FacebookPixel() {
+  if (!TRACKING.FB_PIXEL_ID) return null;
+
   return (
     <>
       <Script id="facebook-pixel" strategy="afterInteractive">

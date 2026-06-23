@@ -37,6 +37,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# image optimization backups (originals replaced by scripts/optimize-images.mjs)
+/image-originals
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

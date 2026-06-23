@@ -1,9 +1,11 @@
 "use client";
 
 import Script from 'next/script';
-import { TRACKING } from '@/constants';
+import { TRACKING } from '@/lib/env';
 
 export default function GoogleAnalytics() {
+  if (!TRACKING.GA_ID) return null;
+
   return (
     <>
       <Script

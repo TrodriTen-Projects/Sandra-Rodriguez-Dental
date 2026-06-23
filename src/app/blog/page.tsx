@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import BlogCard from '@/components/blog/BlogCard';
-import { getAllPosts } from '@/data/blogPosts';
+import { getAllPosts } from '@/content';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export default function BlogPage() {

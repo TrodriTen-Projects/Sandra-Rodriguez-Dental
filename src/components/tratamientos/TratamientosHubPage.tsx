@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { navbarLinks } from "../navbar/navbarLinks";
 import type { SubLinkItem } from "../navbar/navbarLinks";
+import { WHATSAPP_DEFAULT_MESSAGE } from "@/content";
 
 const WhatsAppButtonCTA = lazy(() => import("../buttons/WhatsappButtonCTA"));
 const MapHero = lazy(() => import("../heros/MapHero"));
@@ -183,6 +184,7 @@ export default function TratamientosHubPage() {
                   componentName="tratamientos_hub_agenda"
                   isPrimary
                   text="Agenda tu consulta"
+                  message={WHATSAPP_DEFAULT_MESSAGE}
                 />
               </Suspense>
             </div>
