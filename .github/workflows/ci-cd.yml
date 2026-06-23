@@ -15,12 +15,12 @@ name: CI / CD
 #     NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL
 #
 # Also create a Cloudflare Pages project named "sandrarodriguezdental"
-# (or change --project-name below) with its production branch set to "main".
+# (or change --project-name below) with its production branch set to "master".
 # ──────────────────────────────────────────────────────────────────────────
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
   workflow_dispatch:
 
@@ -65,7 +65,7 @@ jobs:
         run: npm run build
 
       - name: Upload static export
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v4
         with:
           name: static-export
@@ -85,7 +85,7 @@ jobs:
   deploy:
     name: Deploy to Cloudflare Pages
     needs: verify
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - name: Download static export
@@ -99,4 +99,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy out --project-name=sandrarodriguezdental --branch=main
+          command: pages deploy out --project-name=sandrarodriguezdental --branch=master

@@ -3,9 +3,9 @@ name: CodeQL
 # Static application security testing (SAST) of the JS/TS source.
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
   schedule:
     - cron: '27 3 * * 1' # weekly, Monday 03:27 UTC
 

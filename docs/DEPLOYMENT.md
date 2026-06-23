@@ -7,8 +7,8 @@ que se publica en **Cloudflare Pages** mediante **GitHub Actions**.
 
 | Workflow | Archivo | Cuándo corre | Qué hace |
 |---|---|---|---|
-| **CI / CD** | `.github/workflows/ci-cd.yml` | push a `main`, cada PR, manual | `verify` (lint · type-check · `npm audit` · build) y, solo en `main`, `deploy` a Cloudflare. En PRs añade `dependency-review`. |
-| **CodeQL** | `.github/workflows/codeql.yml` | push/PR a `main` + semanal | Análisis estático de seguridad (SAST) del código JS/TS. |
+| **CI / CD** | `.github/workflows/ci-cd.yml` | push a `master`, cada PR, manual | `verify` (lint · type-check · `npm audit` · build) y, solo en `master`, `deploy` a Cloudflare. En PRs añade `dependency-review`. |
+| **CodeQL** | `.github/workflows/codeql.yml` | push/PR a `master` + semanal | Análisis estático de seguridad (SAST) del código JS/TS. |
 | **Dependabot** | `.github/dependabot.yml` | semanal | PRs automáticos para actualizar dependencias npm y Actions. |
 
 El job `deploy` reutiliza el artefacto `out/` construido por `verify` (se compila
@@ -20,7 +20,7 @@ una sola vez) y lo sube con `wrangler pages deploy`.
 1. Crea un proyecto en **Cloudflare Pages** llamado `sandrarodriguezdental`
    (Direct Upload / Wrangler). Si usas otro nombre, ajústalo en `ci-cd.yml`
    (`--project-name`).
-2. Define la **rama de producción** del proyecto como `main`.
+2. Define la **rama de producción** del proyecto como `master`.
 3. Crea un **API Token** (My Profile → API Tokens) con el permiso
    **Account → Cloudflare Pages → Edit**. Copia el token.
 4. Copia tu **Account ID** (Dashboard → Workers & Pages → lateral derecho).
@@ -49,14 +49,14 @@ automáticamente (van incluidas en `out/`). No requieren configuración extra.
 ## Flujo de trabajo
 
 - **Pull Request** → corre `verify` + `dependency-review` + `CodeQL`. No despliega.
-- **Merge / push a `main`** → corre `verify`; si pasa, **despliega a producción**.
+- **Merge / push a `master`** → corre `verify`; si pasa, **despliega a producción**.
 - **Manual** → pestaña *Actions* → *CI / CD* → *Run workflow*.
 
 ## Despliegue manual (sin CI, opcional)
 
 ```bash
 npm run build
-npx wrangler pages deploy out --project-name=sandrarodriguezdental --branch=main
+npx wrangler pages deploy out --project-name=sandrarodriguezdental --branch=master
 ```
 
 ## Notas
