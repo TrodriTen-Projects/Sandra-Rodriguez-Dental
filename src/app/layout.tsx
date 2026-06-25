@@ -5,7 +5,6 @@ import Footer from "@/components/footer/Footer";
 import "./globals.css";
 import Analytics from '@/components/analytics/Analytics';
 import StructuredData from '@/components/StructuredData';
-import ReferralRedirect from '@/components/ReferralRedirect';
 import { WhatsAppButton } from "@/components/buttons/WhatsappButton";
 import logoImage from "../../public/logo.svg";
 import Image from 'next/image';
@@ -124,7 +123,6 @@ export default function RootLayout({
           />
           </Link>
         </div>
-        <ReferralRedirect />
         <Analytics />
         <StructuredData />
         <Navbar/>
