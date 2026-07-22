@@ -28,5 +28,12 @@
     "sharp": "^0.35.2",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
+  },
+  "//overrides": "Force Next's bundled sharp/postcss to patched versions. Next ships older copies (sharp <0.35.0 / postcss <8.5.10) that npm audit can only 'fix' by downgrading Next to 9.3.3; these are build-time only (static export, images unoptimized) so pinning the patched versions is safe. postcss is scoped under 'next' (nested override) because a root postcss override collides with the direct devDependency (EOVERRIDE), and $postcss=^8 would not bump Next's pinned 8.4.31.",
+  "overrides": {
+    "sharp": "$sharp",
+    "next": {
+      "postcss": "^8.5.10"
+    }
   }
 }
