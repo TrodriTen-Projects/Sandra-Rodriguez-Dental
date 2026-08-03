@@ -4,8 +4,6 @@ import SectionTitle from '../SectionTitle';
 interface TratamientoSectionProps {
   title: string;
   description: string;
-  image: string;
-  imageAlt?: string;
   overlayTitle?: string;
   overlayText?: string;
   imageFirst?: boolean;
@@ -52,12 +50,6 @@ export default function TratamientoSection({
 
   const imageContent = (
     <div className="relative h-[220px] md:h-[320px] rounded-lg overflow-hidden bg-gradient-to-r from-primaryDark to-primary">
-      {/* <Image 
-        src={image} 
-        alt={imageAlt}
-        fill
-        className="object-cover rounded-lg"
-      /> */}
       {(overlayTitle || overlayText) && (
         <div className="absolute inset-0 flex items-center justify-end p-4 md:p-8">
           <div className="bg-white/90 p-4 md:p-8 rounded-lg max-w-md w-full">

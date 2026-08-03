@@ -74,6 +74,11 @@ jobs:
 
   dependency-review:
     name: Dependency review
+    # dependency-review-action needs GitHub Advanced Security to run on a
+    # private repo; without it the action errors with "not supported on this
+    # repository". Keep the job (it starts working automatically if the repo
+    # goes public or GHAS is enabled) but don't let that error block PRs.
+    continue-on-error: true
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:

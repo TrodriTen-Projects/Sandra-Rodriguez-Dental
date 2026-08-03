@@ -41,10 +41,7 @@ export const ROUTES = {
   HOME: '/',
   CONTACT: '/contact',
   CASES: '/cases',
-  TRATAMIENTOS: '/tratamientos',
-  TRATAMIENTOS_IMPLANTES: '/tratamientos/implantes',
-  TRATAMIENTOS_ESTETICA: '/tratamientos/estetica',
-  TRATAMIENTOS_PROTESIS: '/tratamientos/protesis',
+  TRATAMIENTOS: '/tratamientos-dentales',
 } as const;
 
 /** SEO keywords used in metadata across pages. */

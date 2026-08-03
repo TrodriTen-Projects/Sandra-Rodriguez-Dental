@@ -1,4 +1,5 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next'
+import { BRAND } from '@/content'
 
 export const dynamic = 'force-static'
 
@@ -7,10 +8,10 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
-        allow: ['/', '/blog/', '/tratamientos/', '_next/static/', '_next/image'],
+        allow: ['/', '/blog/', '/tratamientos-dentales/', '/_next/static/', '/_next/image'],
         disallow: ['/api/'],
       },
     ],
-    sitemap: 'https://www.sandrarodriguezdental.com/sitemap.xml',
+    sitemap: `${BRAND.SITE_URL}/sitemap.xml`,
   }
 }

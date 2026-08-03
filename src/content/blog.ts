@@ -81,7 +81,7 @@ export const blogPosts: BlogPost[] = [
               body: 'La opción más usada en Colombia por décadas. Tiene un núcleo de metal recubierto por porcelana del color del diente. Es muy resistente y funciona bien especialmente en los dientes traseros.\n\nCon el tiempo, si la encía retrocede un poco, puede aparecer una línea oscura en el borde. Para más información sobre este tipo, puedes ver nuestra página de coronas de metal-porcelana.',
               internalLink: {
                 anchor: 'coronas de metal-porcelana',
-                url: '/tratamientos/protesis/coronas/porcelana',
+                url: '/tratamientos-dentales/protesis-dentales-coronas-porcelana',
               },
             },
             {
@@ -89,7 +89,7 @@ export const blogPosts: BlogPost[] = [
               body: 'Hechas completamente de cerámica o zirconio, estas coronas no tienen ningún componente metálico. Transmiten la luz como un diente real y son casi indistinguibles visualmente. Son la elección habitual para los dientes frontales donde la estética importa más.\n\nSi quieres conocer las opciones sin metal disponibles en nuestra clínica, visita nuestra página de coronas libres de metal.',
               internalLink: {
                 anchor: 'coronas libres de metal',
-                url: '/tratamientos/protesis/coronas/nometal',
+                url: '/tratamientos-dentales/protesis-dentales-coronas-nometal',
               },
             },
             {
@@ -180,7 +180,7 @@ export const blogPosts: BlogPost[] = [
               body: 'Cubren un diente dañado de forma completa. Son la opción cuando el diente todavía existe pero necesita protección total. Pueden ser de metal-porcelana, cerámica pura o zirconio dependiendo de la ubicación y las necesidades estéticas del paciente.',
               internalLink: {
                 anchor: 'tipos de coronas dentales',
-                url: '/tratamientos/protesis/coronas/porcelana',
+                url: '/tratamientos-dentales/protesis-dentales-coronas-porcelana',
               },
             },
             {
@@ -192,7 +192,7 @@ export const blogPosts: BlogPost[] = [
               body: 'Cuando no hay dientes vecinos sanos o cuando se han perdido muchos dientes, los implantes dentales actúan como raíces artificiales que sostienen la prótesis. Es la opción más próxima a los dientes naturales en términos de función y comodidad.',
               internalLink: {
                 anchor: 'prótesis sobre implantes',
-                url: '/tratamientos/protesis/sobreimplantes',
+                url: '/tratamientos-dentales/protesis-dentales-sobreimplantes',
               },
             },
           ],
@@ -291,7 +291,7 @@ export const blogPosts: BlogPost[] = [
               body: 'Coronas, puentes y prótesis sobre implantes que se cementan de forma permanente. Son la solución más cómoda y estable para reponer dientes perdidos o dañados.',
               internalLink: {
                 anchor: 'prótesis fija',
-                url: '/tratamientos/protesis/fija',
+                url: '/tratamientos-dentales/protesis-dentales-fija',
               },
             },
             {
@@ -299,7 +299,7 @@ export const blogPosts: BlogPost[] = [
               body: 'Dentaduras parciales o completas que el paciente puede retirar. Se indica cuando no es posible una solución fija o cuando el paciente prefiere esta opción.',
               internalLink: {
                 anchor: 'prótesis removible',
-                url: '/tratamientos/protesis/removible',
+                url: '/tratamientos-dentales/protesis-dentales-removible',
               },
             },
             {
@@ -307,7 +307,7 @@ export const blogPosts: BlogPost[] = [
               body: 'Cuando se han perdido uno o más dientes, los implantes actúan como raíces artificiales sobre las que se anclan coronas o prótesis. Es la solución más parecida al diente natural.',
               internalLink: {
                 anchor: 'prótesis sobre implantes',
-                url: '/tratamientos/protesis/sobreimplantes',
+                url: '/tratamientos-dentales/protesis-dentales-sobreimplantes',
               },
             },
           ],
@@ -412,7 +412,7 @@ export const blogPosts: BlogPost[] = [
               body: 'Cuando el bruxismo ya ha causado desgaste significativo, es necesario restaurar la altura y la forma de los dientes afectados. Según el grado de daño, esto puede hacerse con coronas dentales, carillas o una rehabilitación oral completa.',
               internalLink: {
                 anchor: 'rehabilitación oral completa',
-                url: '/tratamientos/protesis/fija',
+                url: '/tratamientos-dentales/protesis-dentales-fija',
               },
             },
             {

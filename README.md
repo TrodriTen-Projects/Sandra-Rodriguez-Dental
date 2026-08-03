@@ -266,12 +266,14 @@ con `useGoogleAdsConversion()`.
 
 ### Overrides de npm
 
-`package.json` fija versiones parcheadas de `sharp` y `postcss` dentro del árbol
-de Next. Next empaqueta copias con CVEs conocidos y la única "corrección" que
-propone npm es degradar Next a la 9.3.3, que no es viable. Ambas son
-dependencias de build (`sharp` solo lo usa el script de imágenes; el optimizador
-de Next está desactivado), así que fijarlas no afecta runtime. El campo
-`//overrides` del `package.json` documenta el razonamiento completo.
+`package.json` fija versiones parcheadas de `sharp`, `postcss` y
+`brace-expansion`. Next empaqueta copias de `sharp`/`postcss` con CVEs conocidos,
+y `brace-expansion` (transitiva de ESLint vía `minimatch`) recibió un advisory
+sin parche en su línea 1.x. En los tres casos la única "corrección" que propone
+npm es un downgrade o salto de major inviable (Next 9.3.3 o eslint 10). Son
+dependencias de build/lint y no afectan el runtime (`sharp` solo lo usa el script
+de imágenes, con el optimizador de Next desactivado), así que fijarlas es seguro.
+El campo `//overrides` del `package.json` documenta el razonamiento completo.
 
 ---
 
@@ -290,24 +292,19 @@ Detalle completo, configuración inicial y despliegue manual:
 
 Estado real a julio de 2026, para que nadie pierda tiempo redescubriéndolo:
 
-- **`/cases` sigue siendo la plantilla de `create-next-app`** (logo de Next.js,
-  enlaces a Vercel, imagen rota `/vercel.svg`). No está enlazada desde el
-  navbar, pero es pública e indexable. Hay que reescribirla o eliminarla.
-- **Los archivos `page.metadata.ts` son código muerto.** Next.js no los lee; el
-  metadata real es el `export const metadata` de cada `page.tsx`. La home los
-  necesitaría, pero al ser `'use client'` no puede exportar metadata — hoy usa
-  la del layout raíz.
-- **Los posts del blog no tienen metadata propia.** Falta `generateMetadata` en
-  `blog/[slug]/page.tsx`; los campos `metaTitle` / `metaDescription` /
-  `focusKeyword` ya existen en `blog.ts` pero no se usan.
-- **Las fotos de las páginas de tratamiento están comentadas** en
-  `TratamientoSection.tsx`; se ve un degradado en su lugar. Las rutas de imagen
-  de los archivos de datos apuntan a archivos que no existen en `/public`.
+- **`/cases` está oculta a propósito.** Es una página real (casos de éxito), pero
+  se sirve con `noindex, nofollow`, no aparece en el sitemap ni está enlazada en
+  la navegación, a la espera de contenido real (fotos y casos con consentimiento
+  del paciente). Para publicarla: quita el bloque `robots` de
+  `src/app/cases/page.tsx`, vuelve a añadir la ruta en `src/app/sitemap.ts` y, si
+  se quiere, enlázala en el menú (`src/components/navbar/navbarLinks.ts`).
 - **El `ImageCarousel` no navega**: flechas e indicadores llevan la clase
-  `hidden`, así que solo se muestra la primera imagen.
+  `hidden`, así que solo se muestra la primera imagen del proceso.
 - **El acordeón de FAQ no es accesible por teclado** (`<div onClick>` sin
-  `aria-expanded`).
-- Las URLs de imagen del `sitemap.ts` apuntan a archivos inexistentes.
+  `aria-expanded` ni manejo de `Enter`/`Espacio`).
+- **`layout.tsx`** emite un `<meta viewport>` duplicado, un script inline
+  `window.onload` (que obliga a mantener `'unsafe-inline'` en la CSP) y un
+  `mask-icon` que apunta a `/safari-pinned-tab.svg`, inexistente (404).
 - `next lint` está deprecado y desaparece en Next 16.
 
 ---

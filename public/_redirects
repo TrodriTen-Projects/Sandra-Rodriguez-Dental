@@ -1,0 +1,40 @@
+# Cloudflare Pages — redirecciones 301 de la migración SEO de URLs.
+# Las URLs de tratamientos se aplanaron a /tratamientos-dentales/<slug-con-keywords>.
+# Como el sitio es un export estático, las 301 NO pueden hacerse en next.config
+# (redirects() se ignora con output:'export'); Cloudflare Pages procesa este
+# archivo (va incluido en out/). La primera regla que coincide gana, así que las
+# rutas específicas van antes del catch-all. El destino lleva barra final para
+# coincidir con el canonical (trailingSlash: true).
+
+# ── Hub ──
+/tratamientos            /tratamientos-dentales/   301
+/tratamientos/           /tratamientos-dentales/   301
+
+# ── Prótesis ──
+/tratamientos/protesis/fija             /tratamientos-dentales/protesis-dentales-fija/               301
+/tratamientos/protesis/fija/            /tratamientos-dentales/protesis-dentales-fija/               301
+/tratamientos/protesis/removible        /tratamientos-dentales/protesis-dentales-removible/          301
+/tratamientos/protesis/removible/       /tratamientos-dentales/protesis-dentales-removible/          301
+/tratamientos/protesis/sobredientes     /tratamientos-dentales/protesis-dentales-sobredientes/       301
+/tratamientos/protesis/sobredientes/    /tratamientos-dentales/protesis-dentales-sobredientes/       301
+/tratamientos/protesis/sobreimplantes   /tratamientos-dentales/protesis-dentales-sobreimplantes/     301
+/tratamientos/protesis/sobreimplantes/  /tratamientos-dentales/protesis-dentales-sobreimplantes/     301
+
+# ── Coronas ──
+/tratamientos/protesis/coronas/porcelana      /tratamientos-dentales/protesis-dentales-coronas-porcelana/       301
+/tratamientos/protesis/coronas/porcelana/     /tratamientos-dentales/protesis-dentales-coronas-porcelana/       301
+/tratamientos/protesis/coronas/sobreimplante  /tratamientos-dentales/protesis-dentales-coronas-sobreimplante/   301
+/tratamientos/protesis/coronas/sobreimplante/ /tratamientos-dentales/protesis-dentales-coronas-sobreimplante/   301
+/tratamientos/protesis/coronas/nometal        /tratamientos-dentales/protesis-dentales-coronas-nometal/         301
+/tratamientos/protesis/coronas/nometal/       /tratamientos-dentales/protesis-dentales-coronas-nometal/         301
+
+# ── Estética ──
+/tratamientos/estetica/blanqueamientos    /tratamientos-dentales/estetica-dental-blanqueamientos/   301
+/tratamientos/estetica/blanqueamientos/   /tratamientos-dentales/estetica-dental-blanqueamientos/   301
+
+# ── Legacy sin página propia (implantes) y categorías intermedias → hub ──
+/tratamientos/implantes   /tratamientos-dentales/   301
+/tratamientos/implantes/  /tratamientos-dentales/   301
+
+# ── Catch-all: cualquier otra ruta antigua bajo /tratamientos → hub ──
+/tratamientos/*          /tratamientos-dentales/   301

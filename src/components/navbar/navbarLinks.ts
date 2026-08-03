@@ -27,40 +27,31 @@ export const navbarLinks: NavLink[] = [
   { 
     key: 'treatments', 
     label: 'Tratamientos', 
-    href: '/tratamientos',
+    href: '/tratamientos-dentales',
     isDropdown: true,
     subLinks: [
-      // { 
-      //   key: 'implantes', 
-      //   label: 'Implantes', 
-      //   href: '/tratamientos/implantes',
-      //   subLinkItems: [
-      //     { key: 'coronas', label: 'Coronas', href: '/tratamientos/implantes/coronas' },
-      //     { key: 'carillas', label: 'Carillas', href: '/tratamientos/implantes/carillas' }
-      //   ]
-      // },
       { 
         key: 'protesis', 
         label: 'Prótesis', 
-        href: '/tratamientos/protesis',
+        href: '/tratamientos-dentales',
         disabled: true,
         subLinkItems: [
-          { key: 'fija', label: 'Prótesis dental fija', href: '/tratamientos/protesis/fija', image: '/hippy.webp' },
-          { key: 'sobreimplantes', label: 'Prótesis dental sobre implantes', href: '/tratamientos/protesis/sobreimplantes', image: '/pelirroja.webp' },
-          { key: 'sobredientes', label: 'Prótesis dental sobre dientes', href: '/tratamientos/protesis/sobredientes', image: '/sobrediente.webp' },
-          { key: 'removible', label: 'Prótesis dental removible', href: '/tratamientos/protesis/removible', image: '/removible.webp' },
-          { key: 'nometal', label: 'Coronas libres de metal', href: '/tratamientos/protesis/coronas/nometal', image: '/corona_no_metal.webp' },
-          { key: 'porcelana', label: 'Coronas metal porcelana', href: '/tratamientos/protesis/coronas/porcelana', image: '/corona_metal.webp' },
-          { key: 'sobreimplante', label: 'Coronas sobre implantes', href: '/tratamientos/protesis/coronas/sobreimplante', image: '/corona_sobreimplante.webp' },
+          { key: 'fija', label: 'Prótesis dental fija', href: '/tratamientos-dentales/protesis-dentales-fija', image: '/hippy.webp' },
+          { key: 'sobreimplantes', label: 'Prótesis dental sobre implantes', href: '/tratamientos-dentales/protesis-dentales-sobreimplantes', image: '/pelirroja.webp' },
+          { key: 'sobredientes', label: 'Prótesis dental sobre dientes', href: '/tratamientos-dentales/protesis-dentales-sobredientes', image: '/sobrediente.webp' },
+          { key: 'removible', label: 'Prótesis dental removible', href: '/tratamientos-dentales/protesis-dentales-removible', image: '/removible.webp' },
+          { key: 'nometal', label: 'Coronas libres de metal', href: '/tratamientos-dentales/protesis-dentales-coronas-nometal', image: '/corona_no_metal.webp' },
+          { key: 'porcelana', label: 'Coronas metal porcelana', href: '/tratamientos-dentales/protesis-dentales-coronas-porcelana', image: '/corona_metal.webp' },
+          { key: 'sobreimplante', label: 'Coronas sobre implantes', href: '/tratamientos-dentales/protesis-dentales-coronas-sobreimplante', image: '/corona_sobreimplante.webp' },
         ]
       },
       { 
         key: 'blanqueamientos', 
         label: 'Estética Dental', 
         disabled: true,
-        href: '/tratamientos/estetica',
+        href: '/tratamientos-dentales',
         subLinkItems: [
-          { key: 'blanqueamiento', label: 'Blanqueamiento', href: '/tratamientos/estetica/blanqueamientos', image: '/blanqueamientos.webp' },
+          { key: 'blanqueamiento', label: 'Blanqueamiento', href: '/tratamientos-dentales/estetica-dental-blanqueamientos', image: '/blanqueamientos.webp' },
         ]
       },
     ]

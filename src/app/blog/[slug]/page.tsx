@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getPostBySlug, getAllPosts, BlogSection, BlogSubsection, CONTACT } from '@/content';
+import type { Metadata } from 'next';
+import { getPostBySlug, getAllPosts, BlogSection, BlogSubsection, CONTACT, BRAND } from '@/content';
 import ScrollAnimator from '@/components/ScrollAnimator';
 
 function formatDate(dateStr: string): string {
@@ -111,6 +112,42 @@ interface PageProps {
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+
+  if (!post) return {};
+
+  const canonical = `/blog/${post.slug}`;
+  const imageUrl = post.coverImage.startsWith('http')
+    ? post.coverImage
+    : `${BRAND.SITE_URL}${post.coverImage}`;
+
+  return {
+    title: post.metaTitle,
+    description: post.metaDescription,
+    keywords: post.focusKeyword,
+    alternates: { canonical },
+    openGraph: {
+      title: post.metaTitle,
+      description: post.metaDescription,
+      url: `${BRAND.SITE_URL}${canonical}`,
+      siteName: 'Sandra Liliana Rodriguez Dental',
+      locale: 'es_CO',
+      type: 'article',
+      publishedTime: post.date,
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: post.coverImageAlt,
+        },
+      ],
+    },
+  };
 }
 
 export default async function BlogPostPage({ params }: PageProps) {

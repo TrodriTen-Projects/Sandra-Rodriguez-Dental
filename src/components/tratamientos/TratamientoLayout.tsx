@@ -22,14 +22,12 @@ interface TratamientoProps {
   problema: {
     titulo: string;
     descripcion: string;
-    imagen: string;
     overlayTitle: string;
     overlayText: string;
   };
   indicado: {
     titulo: string;
     descripcion: string;
-    imagen: string;
     overlayTitle: string;
     overlayText: string;
   };
@@ -135,8 +133,6 @@ export default function TratamientoLayout({
           <TratamientoSection
             title={problema.titulo}
             description={problema.descripcion}
-            image={problema.imagen}
-            imageAlt="Problema dental"
             overlayTitle={problema.overlayTitle}
             overlayText={problema.overlayText}
             imageFirst={false}
@@ -148,8 +144,6 @@ export default function TratamientoLayout({
           <TratamientoSection
             title={indicado.titulo}
             description={indicado.descripcion}
-            image={indicado.imagen}
-            imageAlt="¿Es lo indicado para ti?"
             overlayTitle={indicado.overlayTitle}
             overlayText={indicado.overlayText}
             imageFirst={true}
