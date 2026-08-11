@@ -49,6 +49,26 @@ const tratamientosMeta: Record<string, TreatmentMeta> = {
     descripcion: 'Tratamiento clínico supervisado para aclarar el tono de tus dientes de forma segura y duradera.',
     categoria: 'Estética',
   },
+  implantes: {
+    descripcion: 'Raíz artificial de titanio que reemplaza un diente perdido de forma fija. Colocación en colaboración con especialista.',
+    categoria: 'Implantes',
+  },
+  disenoSonrisa: {
+    descripcion: 'Planificación estética integral que combina blanqueamiento, carillas, resinas y coronas para una sonrisa armónica.',
+    categoria: 'Estética',
+  },
+  resina: {
+    descripcion: 'Obturación estética del color del diente para reparar caries, fracturas y pequeños defectos en una sesión.',
+    categoria: 'Estética',
+  },
+  limpieza: {
+    descripcion: 'Profilaxis profesional que remueve placa y sarro para prevenir caries y enfermedad de las encías.',
+    categoria: 'Prevención',
+  },
+  ferula: {
+    descripcion: 'Placa a medida que protege tus dientes del desgaste por apretar o rechinar (bruxismo).',
+    categoria: 'Prevención',
+  },
 };
 
 export default function TratamientosHubPage() {

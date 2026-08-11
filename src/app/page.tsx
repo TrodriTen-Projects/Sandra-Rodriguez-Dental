@@ -5,6 +5,7 @@ import TatamientosHomeHero from "@/components/heros/TatamientosHomeHero";
 import DoctorHero from "@/components/heros/DoctorHero";
 import MapHero from "@/components/heros/MapHero";
 import FaqHero from "@/components/heros/FaqHero";
+import ProblemasHero from "@/components/heros/ProblemasHero";
 import ScrollAnimator from "@/components/ScrollAnimator";
 import { faqData } from "@/content";
 
@@ -49,6 +50,10 @@ export default function Home() {
 
       <div className="py-12 hidden-initially transition-all duration-700 opacity-0 translate-y-10">
         <TatamientosHomeHero />
+      </div>
+
+      <div className="py-8 md:py-16 hidden-initially transition-all duration-700 opacity-0 translate-y-10">
+        <ProblemasHero />
       </div>
 
       <div className="py-4 md:py-12 hidden-initially transition-all duration-700 opacity-0 translate-y-10">

@@ -23,8 +23,16 @@ const routes: Array<{
   { path: '/', priority: 1, changeFrequency: 'weekly', images: ['/logo.svg', '/home.webp', '/logoWhite.svg'] },
   { path: '/tratamientos-dentales', priority: 0.9, changeFrequency: 'weekly', images: ['/consultorio.webp'] },
   { path: '/blog', priority: 0.9, changeFrequency: 'weekly' },
+  { path: '/tarifas', priority: 0.8, changeFrequency: 'monthly' },
   // /cases se omite a propósito: está oculta (noindex) hasta tener contenido real.
   { path: '/contact', priority: 0.6, changeFrequency: 'monthly' },
+  // Problemas dentales (índice + páginas por síntoma que embudan a tratamientos).
+  { path: '/problemas-dentales', priority: 0.8, changeFrequency: 'monthly', images: ['/consultorio.webp'] },
+  { path: '/problemas-dentales/me-faltan-dientes', priority: 0.7, changeFrequency: 'monthly', images: ['/home.webp'] },
+  { path: '/problemas-dentales/diente-roto', priority: 0.7, changeFrequency: 'monthly', images: ['/consultorio.webp'] },
+  { path: '/problemas-dentales/bruxismo', priority: 0.7, changeFrequency: 'monthly', images: ['/consultorio_2.webp'] },
+  { path: '/problemas-dentales/dientes-manchados', priority: 0.7, changeFrequency: 'monthly', images: ['/blanqueamientos.webp'] },
+  { path: '/problemas-dentales/desgaste-dental', priority: 0.7, changeFrequency: 'monthly', images: ['/sandra.webp'] },
   { path: '/tratamientos-dentales/protesis-dentales-fija', priority: 0.8, changeFrequency: 'weekly', images: ['/hippy.webp'] },
   { path: '/tratamientos-dentales/protesis-dentales-removible', priority: 0.8, changeFrequency: 'weekly', images: ['/removible.webp'] },
   { path: '/tratamientos-dentales/protesis-dentales-sobreimplantes', priority: 0.8, changeFrequency: 'weekly', images: ['/pelirroja.webp'] },
@@ -33,6 +41,11 @@ const routes: Array<{
   { path: '/tratamientos-dentales/protesis-dentales-coronas-nometal', priority: 0.8, changeFrequency: 'weekly', images: ['/corona_no_metal.webp'] },
   { path: '/tratamientos-dentales/protesis-dentales-coronas-porcelana', priority: 0.8, changeFrequency: 'weekly', images: ['/corona_metal.webp'] },
   { path: '/tratamientos-dentales/protesis-dentales-coronas-sobreimplante', priority: 0.8, changeFrequency: 'weekly', images: ['/corona_sobreimplante.webp'] },
+  { path: '/tratamientos-dentales/limpieza-dental', priority: 0.8, changeFrequency: 'weekly', images: ['/consultorio.webp'] },
+  { path: '/tratamientos-dentales/diseno-de-sonrisa', priority: 0.8, changeFrequency: 'weekly', images: ['/home.webp'] },
+  { path: '/tratamientos-dentales/ferula-para-bruxismo', priority: 0.8, changeFrequency: 'weekly', images: ['/consultorio_2.webp'] },
+  { path: '/tratamientos-dentales/resina-dental', priority: 0.8, changeFrequency: 'weekly', images: ['/sandra.webp'] },
+  { path: '/tratamientos-dentales/implantes-dentales', priority: 0.8, changeFrequency: 'weekly', images: ['/pelirroja.webp'] },
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {

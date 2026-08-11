@@ -9,6 +9,8 @@ interface WhatsAppButtonProps {
   componentName?: string;
   /** Optional pre-filled WhatsApp message. */
   message?: string;
+  /** 'lg' (default) = big hero button; 'sm' = compact pill, igual que en /cases y /tarifas. */
+  size?: "lg" | "sm";
 }
 
 const WhatsAppButtonCTA: React.FC<WhatsAppButtonProps> = ({
@@ -17,6 +19,7 @@ const WhatsAppButtonCTA: React.FC<WhatsAppButtonProps> = ({
   isPrimary = false,
   componentName = "unknown",
   message,
+  size = "lg",
 }) => {
   const { trackEvent } = useAnalytics();
   const { reportConversion } = useGoogleAdsConversion();
@@ -39,12 +42,16 @@ const WhatsAppButtonCTA: React.FC<WhatsAppButtonProps> = ({
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
+  const sizeClasses =
+    size === "sm"
+      ? "px-8 py-4 text-sm"
+      : "w-full md:w-[400px] py-5 md:px-12 md:py-4 text-lg md:text-2xl";
+
   const buttonClasses = `
-    uppercase rounded-full w-full md:w-[400px] py-5 md:px-12 md:py-4 
-    text-lg md:text-2xl font-semibold transition
-    tracking-widest
-    ${isPrimary 
-      ? "bg-primary text-white hover:bg-primaryDark" 
+    uppercase rounded-full font-semibold transition tracking-widest
+    ${sizeClasses}
+    ${isPrimary
+      ? "bg-primary text-white hover:bg-primaryDark"
       : "bg-white text-black hover:bg-gray-200"}
   `;
 

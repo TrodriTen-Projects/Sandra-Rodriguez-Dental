@@ -67,7 +67,29 @@ const MobileDropdown: React.FC<MobileDropdownProps> = ({
       >
         {isOpen && (
           <div className="text-gray">
-            {subLinks.map((subLink) => (
+            {subLinks.map((subLink) => {
+              // Enlace plano (sin sub-items) → navegable directamente en móvil.
+              if (!subLink.subLinkItems) {
+                return (
+                  <Link
+                    key={subLink.key}
+                    href={subLink.href}
+                    className={`text-center px-12 block py-6 border-b border-white ${
+                      pathname === subLink.href ? 'text-primary' : 'text-gray-700'
+                    } hover:text-white transition-colors duration-200`}
+                    style={{
+                      backgroundColor:
+                        pathname === subLink.href
+                          ? 'rgba(2, 131, 157, 0.1)'
+                          : 'rgba(2, 131, 157, 0.25)',
+                    }}
+                    onClick={onClose}
+                  >
+                    {subLink.label}
+                  </Link>
+                );
+              }
+              return (
               <div key={subLink.key}>
                 <div
                   className={`text-center px-12 block py-6 border-b border-white cursor-pointer ${
@@ -123,7 +145,8 @@ const MobileDropdown: React.FC<MobileDropdownProps> = ({
                   )}
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

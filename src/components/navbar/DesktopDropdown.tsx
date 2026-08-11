@@ -47,14 +47,12 @@ const DesktopDropdown: React.FC<DesktopDropdownProps> = ({ label, href, subLinks
     link.subLinkItems?.some(item => pathname === item.href)
   );
 
-  // Handle click on main dropdown link
+  // Handle click on main dropdown link — always go to the dropdown's own hub
+  // page (e.g. /tratamientos-dentales or /problemas-dentales). The sub-items are
+  // reachable from the dropdown panel on hover.
   const handleMainLinkClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    // Navigate to the first enabled sublink if there is one; otherwise fall back
-    // to the dropdown's own href (the hub page) so the main item is never a
-    // dead click when every sublink is disabled.
-    const firstEnabledLink = subLinks?.find(link => !link.disabled);
-    router.push(firstEnabledLink ? firstEnabledLink.href : href);
+    router.push(href);
   };
 
   const handleMouseEnter = () => {
