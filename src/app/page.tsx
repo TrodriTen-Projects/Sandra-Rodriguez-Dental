@@ -10,18 +10,18 @@ import ScrollAnimator from "@/components/ScrollAnimator";
 import { faqData } from "@/content";
 
 export const metadata: Metadata = {
-  title: "Dra. Sandra Liliana Rodriguez | Rehabilitación Oral y Prostodoncia",
+  title: "Rehabilitación Oral y Prótesis Dental en Bogotá | Dra. Sandra Rodríguez",
   description:
-    "Servicios especializados de rehabilitación dental y odontología estética por la Dra. Sandra Liliana Rodriguez Ariza.",
+    "Coronas en metal-porcelana, prótesis, implantes y diseño de sonrisa en Bogotá. Rehabilitación oral con la Dra. Sandra Rodríguez. Agenda tu valoración.",
   keywords:
     "rehabilitación dental, odontología estética, Sandra Rodriguez, cuidado dental, blanqueamiento dental, implantes dentales, odontología preventiva, salud bucal, prostodoncia, rehabilitación oral",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Dra. Sandra Liliana Rodriguez | Rehabilitación Oral y Prostodoncia",
+    title: "Rehabilitación Oral y Prótesis Dental en Bogotá | Dra. Sandra Rodríguez",
     description:
-      "Servicios especializados de rehabilitación dental y odontología estética por la Dra. Sandra Liliana Rodriguez Ariza.",
+      "Coronas en metal-porcelana, prótesis, implantes y diseño de sonrisa en Bogotá. Rehabilitación oral con la Dra. Sandra Rodríguez. Agenda tu valoración.",
     url: "https://www.sandrarodriguezdental.com",
     siteName: "Sandra Liliana Rodriguez Dental",
     locale: "es_CO",
