@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { navbarLinks } from "./navbarLinks";
 import { usePathname } from 'next/navigation';
@@ -24,22 +25,24 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
 
   if (!mounted) return null;
 
-  return (
+  return createPortal(
     <>
       <div
-        className={`fixed inset-0 bg-gray-100 transition-opacity duration-300 ease-in-out z-40 lg:hidden ${
+        className={`fixed inset-0 bg-gray-100 transition-opacity duration-300 ease-in-out z-[100] lg:hidden ${
           isOpen ? "opacity-70" : "opacity-0 pointer-events-none"
         }`}
         onClick={onClose}
       />
 
       <div
-        className={`fixed top-0 right-0 h-full w-full bg-white z-50 lg:hidden flex flex-col transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-full w-full bg-white z-[110] lg:hidden flex flex-col transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex-shrink-0 flex justify-between items-center px-6 py-4 bg-white border-b border-secondaryLight">
-          <Logo width={150}/>
+        <div className="flex-shrink-0 flex justify-between items-center px-6 h-20 bg-white border-b border-secondaryLight shadow-sm">
+          <div className="flex-shrink-0 [&_img]:!h-9 [&_img]:!w-auto">
+            <Logo width={150}/>
+          </div>
           <button
             className="text-primary hover:text-gray-700 transition-colors duration-200"
             onClick={onClose}
@@ -120,7 +123,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
           </div>
         </nav>
       </div>
-    </>
+    </>,
+    document.body
   );
 };
 
