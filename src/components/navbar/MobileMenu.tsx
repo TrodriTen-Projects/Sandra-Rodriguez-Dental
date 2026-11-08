@@ -34,11 +34,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       />
 
       <div
-        className={`fixed top-0 right-0 h-full w-full bg-white z-50 lg:hidden transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 h-full w-full bg-white z-50 lg:hidden flex flex-col transform transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex justify-between items-center px-6 pt-6">
+        <div className="flex-shrink-0 flex justify-between items-center px-6 py-4 bg-white border-b border-secondaryLight">
           <Logo width={150}/>
           <button
             className="text-primary hover:text-gray-700 transition-colors duration-200"
@@ -61,7 +61,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
           </button>
         </div>
 
-        <nav className="h-full pt-16 pb-4 overflow-y-auto">
+        <nav className="flex-1 min-h-0 pb-4 overflow-y-auto">
           <div className="flex flex-col">
             {navbarLinks.map((link, index) => {
               // Dropdown menu
