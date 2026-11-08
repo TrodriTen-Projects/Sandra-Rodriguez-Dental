@@ -3,15 +3,15 @@ import { blanqueamientoData } from "./blanqueamiento";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blanqueamiento Dental en Bogotá | Dra. Sandra Liliana Rodriguez",
-  description: "Tratamiento estético para aclarar el color de los dientes y eliminar manchas. Blanqueamiento en clínica y en casa con resultados visibles y seguros. Atención personalizada en Bogotá.",
-  keywords: "blanqueamiento dental, blanqueamiento de dientes, tratamiento estético dental, odontología estética Bogotá, clínica dental, sonrisa blanca, eliminación de manchas dentales",
+  title: "Blanqueamiento Dental en Bogotá: precio y tipos | Dra. Sandra Rodriguez",
+  description: "Blanqueamiento dental en Bogotá desde $830.000: aclara el color de tus dientes y elimina manchas con resultados visibles y seguros, en clínica o en casa. Valoración con la Dra. Sandra Rodríguez.",
+  keywords: "blanqueamiento dental bogota, cuánto cuesta blanqueamiento dental, blanqueamiento dental precio bogotá, valor blanqueamiento dental, blanqueamiento de dientes, tratamiento estético dental, odontología estética Bogotá, sonrisa blanca, eliminación de manchas dentales",
   alternates: {
     canonical: "https://www.sandrarodriguezdental.com/tratamientos-dentales/estetica-dental-blanqueamientos",
   },
   openGraph: {
-    title: "Blanqueamiento Dental en Bogotá | Dra. Sandra Liliana Rodriguez",
-    description: "Tratamiento estético para aclarar el color de los dientes y eliminar manchas. Blanqueamiento en clínica y en casa con resultados visibles y seguros.",
+    title: "Blanqueamiento Dental en Bogotá: precio y tipos | Dra. Sandra Rodriguez",
+    description: "Blanqueamiento dental en Bogotá desde $830.000: aclara el color de tus dientes y elimina manchas con resultados visibles y seguros, en clínica o en casa.",
     url: "https://www.sandrarodriguezdental.com/tratamientos-dentales/estetica-dental-blanqueamientos",
     siteName: "Sandra Liliana Rodriguez Dental",
     locale: "es_CO",

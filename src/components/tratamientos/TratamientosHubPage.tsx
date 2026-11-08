@@ -17,6 +17,10 @@ interface TreatmentMeta {
 }
 
 const tratamientosMeta: Record<string, TreatmentMeta> = {
+  rehabilitacionOral: {
+    descripcion: 'Plan integral que combina coronas, prótesis e implantes para recuperar función, salud y estética en toda tu boca.',
+    categoria: 'Rehabilitación',
+  },
   fija: {
     descripcion: 'Reemplaza dientes perdidos de forma permanente, apoyándose en los dientes vecinos como pilares.',
     categoria: 'Prótesis',
