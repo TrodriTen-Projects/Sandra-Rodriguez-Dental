@@ -12,27 +12,30 @@
   },
   "dependencies": {
     "js-cookie": "^3.0.8",
-    "next": "^15.5.19",
+    "next": "^15.5.29",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
+    "@eslint/eslintrc": "^3.3.7",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "^15.5.19",
-    "postcss": "^8",
-    "sharp": "^0.35.2",
+    "eslint-config-next": "^15.5.29",
+    "postcss": "^8.5.32",
+    "sharp": "^0.35.5",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   },
-  "//overrides": "Force Next's bundled sharp/postcss to patched versions. Next ships older copies (sharp <0.35.0 / postcss <8.5.10) that npm audit can only 'fix' by downgrading Next to 9.3.3; these are build-time only (static export, images unoptimized) so pinning the patched versions is safe. postcss is scoped under 'next' (nested override) because a root postcss override collides with the direct devDependency (EOVERRIDE), and $postcss=^8 would not bump Next's pinned 8.4.31. brace-expansion is pinned to 5.0.8 (GHSA-mh99-v99m-4gvg, DoS/OOM, affects <=5.0.7): it is a transitive dep of ESLint's minimatch (devDependency, lint-time only) whose 1.x line has no patched release, so a global pin to the fixed 5.0.8 is the only fix short of a breaking eslint@10 upgrade; the expand() API is unchanged across majors.",
+  "//overrides": "Force Next's bundled sharp/postcss to patched versions. Next ships older copies (sharp <0.35.0 / postcss <8.5.10) that npm audit can only 'fix' by downgrading Next to 9.3.3; these are build-time only (static export, images unoptimized) so pinning the patched versions is safe. postcss is scoped under 'next' (nested override) because a root postcss override collides with the direct devDependency (EOVERRIDE), and $postcss=^8 would not bump Next's pinned 8.4.31. brace-expansion is pinned to ^5.0.12 (GHSA-mh99-v99m-4gvg, GHSA-q2hr-2g5m-vwhr, GHSA-qhr7-859c-m2p7, GHSA-6j4f-fj2g-mc7p: DoS, affect <5.0.12): it is a transitive dep of ESLint's minimatch (devDependency, lint-time only) whose 1.x line has no patched release, so a global pin is the only fix short of a breaking eslint@10 upgrade; the expand() API is unchanged across majors. minimatch under @typescript-eslint/typescript-estree is forced to ^11.0.1 (GHSA-g3hv-75wg-m249, affects >=7.0.0 <11.0.1): typescript-estree pins ^10.2.2 and npm audit's only 'fix' is downgrading @typescript-eslint to 6.15.0, which breaks the eslint@9 peer range; minimatch 11 keeps the same named minimatch() API.",
   "overrides": {
     "sharp": "$sharp",
-    "brace-expansion": "^5.0.9",
+    "brace-expansion": "^5.0.12",
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": "^11.0.1"
+    },
     "next": {
       "postcss": "^8.5.10"
     }
