@@ -38,3 +38,7 @@
 
 # ── Catch-all: cualquier otra ruta antigua bajo /tratamientos → hub ──
 /tratamientos/*          /tratamientos-dentales/   301
+
+# ── Locale antiguo sin equivalente (aparecía como 404 en Search Console) ──
+/es    /   301
+/es/   /   301
