@@ -22,6 +22,7 @@ const routes: Array<{
 }> = [
   { path: '/', priority: 1, changeFrequency: 'weekly', images: ['/logo.svg', '/home.webp', '/logoWhite.svg'] },
   { path: '/tratamientos-dentales', priority: 0.9, changeFrequency: 'weekly', images: ['/consultorio.webp'] },
+  { path: '/tratamientos-dentales/rehabilitacion-oral', priority: 0.9, changeFrequency: 'weekly', images: ['/sandra.webp'] },
   { path: '/blog', priority: 0.9, changeFrequency: 'weekly' },
   { path: '/tarifas', priority: 0.8, changeFrequency: 'monthly' },
   // /cases se omite a propósito: está oculta (noindex) hasta tener contenido real.

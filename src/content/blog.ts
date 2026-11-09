@@ -412,7 +412,7 @@ export const blogPosts: BlogPost[] = [
               body: 'Cuando el bruxismo ya ha causado desgaste significativo, es necesario restaurar la altura y la forma de los dientes afectados. Según el grado de daño, esto puede hacerse con coronas dentales, carillas o una rehabilitación oral completa.',
               internalLink: {
                 anchor: 'rehabilitación oral completa',
-                url: '/tratamientos-dentales/protesis-dentales-fija',
+                url: '/tratamientos-dentales/rehabilitacion-oral',
               },
             },
             {
@@ -440,6 +440,91 @@ export const blogPosts: BlogPost[] = [
         'Este artículo tiene fines educativos e informativos. No reemplaza la evaluación clínica de un profesional de la salud. Cada caso requiere diagnóstico personalizado.',
       callToAction:
         '¿Crees que tienes bruxismo o notas desgaste en tus dientes? Agenda una consulta con la Dra. Sandra Rodríguez para una evaluación completa y un plan de tratamiento a tu medida.',
+    },
+  },
+  {
+    id: 'post_005',
+    slug: 'cuanto-cuesta-limpieza-dental-bogota',
+    title: '¿Cuánto cuesta una limpieza dental en Bogotá?',
+    subtitle: 'Precios de referencia, qué incluye y qué hace variar el costo',
+    excerpt:
+      'Si buscas cuánto vale una limpieza dental en Bogotá, aquí te damos un precio de referencia claro, te explicamos qué incluye realmente y por qué el costo puede variar de una persona a otra.',
+    date: '2026-11-05',
+    readTime: 5,
+    category: 'Prevención',
+    coverImage: '/consultorio.webp',
+    coverImageAlt: 'Limpieza dental profesional en el consultorio de la Dra. Sandra Rodríguez, Bogotá',
+    metaTitle: '¿Cuánto cuesta una limpieza dental en Bogotá? Precio y qué incluye | Sandra Rodríguez',
+    metaDescription:
+      'Cuánto cuesta una limpieza dental en Bogotá: precio de referencia desde $220.000, qué incluye la limpieza profesional y qué factores hacen variar el costo. Guía de la Dra. Sandra Rodríguez.',
+    focusKeyword: 'cuánto cuesta una limpieza dental en bogotá',
+    content: {
+      intro:
+        'Es una de las preguntas más frecuentes antes de pedir cita: "¿cuánto me va a costar una limpieza dental?". Es una duda totalmente razonable, y la respuesta honesta es que depende de tu caso. Pero eso no significa que no podamos darte una referencia clara.\n\nEn este artículo te explicamos un precio orientativo de la limpieza dental en Bogotá, qué incluye de verdad una limpieza profesional y qué factores pueden hacer que el costo cambie de una persona a otra.',
+      sections: [
+        {
+          heading: '¿Cuánto cuesta una limpieza dental en Bogotá?',
+          body: 'En nuestra clínica, la limpieza dental profesional (también llamada fase higiénica o profilaxis) tiene un precio de referencia desde $220.000. A esto se suma, en la primera cita, una valoración desde $80.000, en la que la Dra. revisa el estado de tus dientes y encías y confirma qué tipo de limpieza necesitas.\n\nEs importante entender que estos son valores de referencia "desde": el precio final se confirma después de la valoración, porque no todas las bocas requieren el mismo trabajo. Puedes consultar la lista completa y actualizada de precios en nuestra página de tarifas.',
+          subsections: [
+            {
+              heading: 'Dónde ver todos los precios',
+              body: 'Reunimos los valores de referencia de cada tratamiento (limpieza, blanqueamiento, coronas, prótesis y más) en nuestra página de tarifas, para que puedas hacerte una idea antes de tu cita.',
+              internalLink: {
+                anchor: 'página de tarifas',
+                url: '/tarifas',
+              },
+            },
+          ],
+        },
+        {
+          heading: '¿Qué incluye una limpieza dental profesional?',
+          body: 'Una limpieza dental no es simplemente "pulir los dientes". Es un procedimiento que hace un profesional y que tu cepillo en casa no puede reemplazar, porque remueve lo que ya está adherido y endurecido. Normalmente incluye:',
+          list: [
+            'Remoción de placa bacteriana y sarro (cálculo) que se acumula sobre todo cerca de la encía',
+            'Pulido de la superficie de los dientes para dejarlos lisos y más difíciles de volver a manchar',
+            'Revisión del estado de tus encías y de posibles zonas con caries o problemas',
+            'Recomendaciones personalizadas de higiene para tu caso',
+          ],
+          subsections: [
+            {
+              heading: 'Conoce el tratamiento en detalle',
+              body: 'Si quieres ver en qué consiste paso a paso y por qué es la base de la salud bucal, visita nuestra página de limpieza dental.',
+              internalLink: {
+                anchor: 'página de limpieza dental',
+                url: '/tratamientos-dentales/limpieza-dental',
+              },
+            },
+          ],
+        },
+        {
+          heading: '¿Por qué el precio puede variar?',
+          body: 'Dos personas pueden pagar distinto por su limpieza, y no es casualidad. Estos son los factores que más influyen:',
+          list: [
+            'La cantidad de sarro acumulado: si hace mucho que no te haces una limpieza, habrá más trabajo que remover',
+            'El estado de tus encías: unas encías inflamadas o con sangrado pueden indicar que necesitas una evaluación más detallada antes o después de la limpieza',
+            'Si es tu primera visita: la valoración inicial se suma al costo de la limpieza',
+            'La frecuencia con que te la haces: quienes mantienen controles regulares suelen necesitar limpiezas más sencillas',
+          ],
+        },
+        {
+          heading: '¿Cada cuánto debo hacerme una limpieza dental?',
+          body: 'La recomendación general es hacerse una limpieza profesional cada 6 meses, aunque algunas personas pueden necesitarla con más frecuencia según su tendencia a acumular sarro o su estado de encías.\n\nHacerla de forma regular no solo mantiene tu sonrisa más sana: también sale más económico a largo plazo, porque previene problemas (caries, enfermedad de las encías) que luego requieren tratamientos más grandes y costosos.',
+        },
+        {
+          heading: '¿La limpieza dental duele?',
+          body: 'En general no. Puedes sentir alguna molestia leve o sensibilidad, sobre todo si hay mucho sarro acumulado o las encías están inflamadas, pero no es un procedimiento doloroso. Si tienes sensibilidad, coméntalo: siempre podemos trabajar con cuidado para que estés cómodo.',
+        },
+        {
+          heading: 'No busques solo la más barata',
+          body: 'Entendemos que el precio importa, pero una limpieza dental es un procedimiento clínico que debe hacer un profesional sobre una boca previamente evaluada. Una limpieza bien hecha protege tus dientes y detecta a tiempo otros problemas; una mal hecha puede pasar por alto lo importante.\n\nLo más sensato es ver el precio dentro del valor que recibes: evaluación profesional, remoción segura del sarro y un plan de cuidado pensado para ti.',
+        },
+      ],
+      conclusion:
+        'Una limpieza dental profesional en Bogotá tiene un precio de referencia desde $220.000, más la valoración inicial desde $80.000, y el valor final depende de tu caso. Más allá de la cifra, es la inversión más sencilla y rentable que puedes hacer por tu salud bucal: previene problemas mayores y mantiene tu sonrisa sana.',
+      medicalDisclaimer:
+        'Este artículo tiene fines educativos e informativos y los precios son valores de referencia sujetos a cambios. No reemplaza una valoración clínica; el tratamiento y el costo final se definen tras evaluar tu caso.',
+      callToAction:
+        '¿Quieres agendar tu limpieza dental o resolver una duda sobre el precio? Escríbenos y la Dra. Sandra Rodríguez evaluará tu caso para darte un plan claro y a tu medida.',
     },
   },
 ];

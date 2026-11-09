@@ -30,9 +30,18 @@ export const navbarLinks: NavLink[] = [
     href: '/tratamientos-dentales',
     isDropdown: true,
     subLinks: [
-      { 
-        key: 'protesis', 
-        label: 'Prótesis', 
+      {
+        key: 'rehabilitacion',
+        label: 'Rehabilitación oral',
+        disabled: true,
+        href: '/tratamientos-dentales',
+        subLinkItems: [
+          { key: 'rehabilitacionOral', label: 'Rehabilitación oral completa', href: '/tratamientos-dentales/rehabilitacion-oral', image: '/sandra.webp' },
+        ]
+      },
+      {
+        key: 'protesis',
+        label: 'Prótesis',
         href: '/tratamientos-dentales',
         disabled: true,
         subLinkItems: [

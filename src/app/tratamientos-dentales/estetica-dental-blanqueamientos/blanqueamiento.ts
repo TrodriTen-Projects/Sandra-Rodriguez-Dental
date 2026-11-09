@@ -67,6 +67,10 @@ export const blanqueamientoData = {
   },
   "faqs": [
     {
+      "question": "¿Cuánto cuesta un blanqueamiento dental en Bogotá?",
+      "answer": "El precio depende del tipo de blanqueamiento (en clínica, en casa o combinado). En nuestra clínica el blanqueamiento dental está disponible desde $830.000 y siempre parte de una valoración (desde $80.000), en la que confirmamos que es seguro y adecuado para ti. Puedes ver la lista completa de precios de referencia en nuestra página de tarifas."
+    },
+    {
       "question": "¿Es seguro el blanqueamiento dental?",
       "answer": "Sí, siempre que sea realizado y supervisado por un profesional. Los productos y técnicas actuales son seguros y eficaces."
     },
